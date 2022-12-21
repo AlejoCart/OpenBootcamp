@@ -19,6 +19,9 @@ public class Main {
         boolean control=true;
         System.out.println(control);
 
+        char caracter ='A';
+        System.out.println(caracter);
+
         //System.out.println("Hello world!");
     }
 }
