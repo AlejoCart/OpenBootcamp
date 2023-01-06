@@ -61,7 +61,11 @@ public class Main {
 
 
         //Punto 9
-        Punto9.accionar();
+        try {
+            Punto9.accionar();
+        } catch (Exception e) {
+            System.out.println("Me hice popo");
+        }
     }
 
     public static String reverse(String texto) {
