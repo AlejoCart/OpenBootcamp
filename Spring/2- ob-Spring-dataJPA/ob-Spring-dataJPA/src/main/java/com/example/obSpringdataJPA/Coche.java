@@ -1,6 +1,7 @@
 package com.example.obSpringdataJPA;
 import jakarta.persistence.*;
 
+
 @Entity
 @Table(name = "Coche")
 public class Coche {
