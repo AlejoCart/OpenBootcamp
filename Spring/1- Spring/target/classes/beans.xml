@@ -4,6 +4,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <!--Para lograr que se reconozca la etiqueta context
+    xmlns:context="http://www.springframework.org/schema/context"-->
+
     <bean id="calculator" class="org.example.calculatorService">
 
     </bean>
@@ -11,5 +14,8 @@
     <bean id="gestorFacturas" class="org.example.gestorFacturas" scope="prototype">
         <constructor-arg name="calculadora" ref="calculator"/>
     </bean>
-
+    <!-- Hace scan del paquete eh implementa las clases como beans automaticamente
+    <context: component-scan base-package="org.example"/>-->
 </beans>
+<!--<bean id="saludo" class="org.example.src.Saludo">
+    </bean>-->
