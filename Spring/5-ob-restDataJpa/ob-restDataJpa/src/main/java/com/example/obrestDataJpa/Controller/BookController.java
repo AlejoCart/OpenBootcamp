@@ -13,7 +13,7 @@ import java.util.Optional;
 
 
 @RestController
-@AllArgsConstructor
+@AllArgsConstructor//inicializa el objeto repository
 public class BookController {
 
 
