@@ -8,6 +8,7 @@ import java.time.LocalDate;
 @Data
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 @Entity
+@Builder(toBuilder = true)
 @Table(name = "Books")
 public class Book {
 
@@ -22,6 +23,9 @@ public class Book {
     private Integer stock;
     private LocalDate releaseDate;
 
+    public boolean getAvailable(){
+        return this.available;
+    }
 
     /*public Book(){
 
