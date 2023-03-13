@@ -9,10 +9,19 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 import java.time.LocalDate;
 
 @SpringBootApplication
-@ComponentScan(basePackageClasses = HelloWorldController.class)
+
+/**url para swagger
+ *HTTP http://localhost:8081/swagger-ui
+ *JSON: http://localhost:8081/v2/api-docs
+ *
+ * url base
+ * http://localhost:8081/api/
+ * */
 public class ObRestDataJpaApplication {
 
 	public static void main(String[] args) {

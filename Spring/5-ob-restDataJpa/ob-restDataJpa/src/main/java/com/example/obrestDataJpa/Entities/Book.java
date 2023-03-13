@@ -1,6 +1,8 @@
 package com.example.obrestDataJpa.Entities;
 
-import jakarta.persistence.*;
+import /*jakarta*/javax.persistence.*;
+
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -14,6 +16,7 @@ public class Book {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @ApiModelProperty("Clave autoincrementaltipo Long")
     private Long id;
     private String title;
     private String autor;

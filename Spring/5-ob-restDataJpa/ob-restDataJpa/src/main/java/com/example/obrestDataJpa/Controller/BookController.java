@@ -2,6 +2,8 @@ package com.example.obrestDataJpa.Controller;
 
 import com.example.obrestDataJpa.Entities.Book;
 import com.example.obrestDataJpa.Repository.BookRepository;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +12,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +36,8 @@ public class BookController {
 
 
     @GetMapping("/api/Books/{id}")
-    public ResponseEntity<Book> findById(@PathVariable Long id){
+    @ApiOperation("Buscar un libro por id")
+    public ResponseEntity<Book> findById(@ApiParam("Clave primaria tipo Long") @PathVariable Long id){
         Optional<Book> aux;//=repositorio.getReferenceById(id);
         aux=repositorio.findById(id);
 
@@ -104,6 +108,7 @@ public class BookController {
         }
     }
 
+    @ApiIgnore
     @DeleteMapping("/api/Books/")
     public ResponseEntity<Book> deleteAll(){
         if(repositorio.count()>0){
