@@ -8,6 +8,10 @@ public class Ob1Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Ob1Application.class, args);
+
+
+
+
 	}
 
 }
