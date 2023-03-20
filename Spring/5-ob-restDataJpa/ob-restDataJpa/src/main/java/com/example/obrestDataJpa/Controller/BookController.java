@@ -28,6 +28,11 @@ public class BookController {
 
     private final Logger log= LoggerFactory.getLogger(BookController.class);
 
+    @GetMapping("/api/hola")
+    public String hola(){
+        return "Hola mundo que tal todo?";
+    }
+
     @GetMapping(value ={"/api/Books", "/api/Books/"})
     public List<Book> findAll(){
 
