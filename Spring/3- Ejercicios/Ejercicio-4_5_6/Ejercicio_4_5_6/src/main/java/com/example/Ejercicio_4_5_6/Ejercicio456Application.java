@@ -8,7 +8,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 
-
+/**url para swagger
+ *HTTP http://localhost:8081/swagger-ui
+ *JSON: http://localhost:8081/v2/api-docs
+ *
+ * url base
+ * http://localhost:8081/api/
+ * */
 @SpringBootApplication
 public class Ejercicio456Application {
 

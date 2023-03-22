@@ -56,16 +56,25 @@ public class LaptopController {
 
     @DeleteMapping("/api/Laptop/delete/{id}")
     public ResponseEntity<Laptop> deleteById(@PathVariable Long id){
-
-
-        return null;
+        if(repositorio.existsById(id)){
+            repositorio.deleteById(id);
+            return ResponseEntity.ok().build();
+        }else {
+            log.warn("Deleting object does not exist");
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/apí/Laptop/deleteAll")
     public ResponseEntity<Laptop> deleteAll(){
 
-
-        return null;
+        if(repositorio.count()>0){
+            repositorio.deleteAll();
+            log.warn("Deleting all entries in repository");
+            return ResponseEntity.notFound().build();
+        }
+        log.warn("No entries where found");
+        return ResponseEntity.noContent().build();
     }
 
 }
