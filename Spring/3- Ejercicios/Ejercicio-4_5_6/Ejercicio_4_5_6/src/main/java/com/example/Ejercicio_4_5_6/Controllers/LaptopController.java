@@ -56,7 +56,7 @@ public class LaptopController {
 
         if(repositorio.existsById(lap.getId())){
             repositorio.save(lap);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok(lap);
         }else {
             log.warn("Updating object not found by ID");
             return ResponseEntity.notFound().build();

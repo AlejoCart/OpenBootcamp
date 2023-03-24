@@ -37,7 +37,7 @@ class LaptopControllerTest {
         testRestTemplate= new TestRestTemplate(restTemplateBuilder);
         repo.save(new Laptop(null,"Laptop para testing","0.01"));
     }
-    @DisplayName("Comprobar findAll")
+    @DisplayName("Encontrar todos los elementos")
     @Test
     void findAll() {
 
@@ -52,7 +52,9 @@ class LaptopControllerTest {
         //assertEquals(1,laptops.size());
         }
 
+
     @Test
+    @DisplayName("Encontrar elemento por id")
     void findOneById() {
         ResponseEntity<Laptop[]> response=
                 testRestTemplate.getForEntity("/api/Laptop/1", Laptop[].class);
@@ -61,6 +63,7 @@ class LaptopControllerTest {
     }
 
     @Test
+    @DisplayName("Encontrar todos los elementos")
     void create() {
 
         HttpHeaders headers= new HttpHeaders();
@@ -80,7 +83,6 @@ class LaptopControllerTest {
                         "/Laptops",
                 HttpMethod.POST,request,
                 Laptop.class);
-
         Laptop result= response.getBody();
         System.out.println(result);
         assertEquals(2L,result.getId());
@@ -92,14 +94,80 @@ class LaptopControllerTest {
     //
     //
     @Test
+    @DisplayName("Actualizar informacion del objeto ")
     void update() {
+        HttpHeaders headers= new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+
+        String json= """
+                    {    "id":1,
+                         "marca": "Marca De testing update",
+                         "modelo": "0.02"
+                     }""";
+        HttpEntity<String> request = new HttpEntity<>(json,headers);
+        //System.out.println(request.getBody());
+        //System.out.println(request.getHeaders());
+        ResponseEntity<Laptop> response;
+        response = testRestTemplate.exchange("/api" +
+                        "/Laptop/update",
+                HttpMethod.PUT,request,
+                Laptop.class);
+        Laptop result= response.getBody();
+        System.out.println(result);
+        //assertEquals(1L,result.getId());
+        assertEquals("0.02",result.getModelo());
+
     }
 
     @Test
+    @DisplayName("Borrar elemento por id")
     void deleteById() {
+        Long id=1L;
+        ResponseEntity response;
+        response = testRestTemplate.exchange("/api" +
+                        "/Laptop/delete/"+id,
+                HttpMethod.DELETE,null,
+                ResponseEntity.class);
+
+        System.out.println(response.getStatusCode().value());
+        assertEquals(200,response.getStatusCode().value());
+
+        id=-1L;
+        response = testRestTemplate.exchange("/api" +
+                        "/Laptop/delete/"+id,
+                HttpMethod.DELETE,null,
+                ResponseEntity.class);
+        System.out.println(response.getStatusCode().value());
+        assertEquals(404,response.getStatusCode().value());
+
     }
 
+
+    //Broken ¯\_(ツ)_/¯
     @Test
+    @DisplayName("Borrar todos los elementos")
     void deleteAll() {
+        ResponseEntity response;
+        response = testRestTemplate.exchange("/api" +
+                        "/Laptop/deleteAll",
+                HttpMethod.DELETE, null,
+                ResponseEntity.class);
+
+        /*response = testRestTemplate.exchange("/api" +
+                        "/Laptop/delete/"+id,
+                HttpMethod.DELETE,null,
+                ResponseEntity.class);*/
+
+        assertEquals(404,response.getStatusCode().value());
+        //Limpiando repositorio
+        repo.deleteAll();
+
+        response = testRestTemplate.exchange("/api" +
+                        "/Laptop/deleteAll/",
+                HttpMethod.DELETE,null,
+                ResponseEntity.class);
+
+        assertEquals(204,response.getStatusCode().value());
     }
 }
