@@ -2,6 +2,7 @@ package com.example.obrestDataJpa.Entities;
 
 import /*jakarta*/javax.persistence.*;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 @Entity
 //@Builder(toBuilder = true)
 @Table(name = "Books")
+@ApiModel("Entidad libro para representar un elemento didáctico compuesto por láminas de celulosa macerada en Puerto Rico")
 public class Book {
 
     @Id
